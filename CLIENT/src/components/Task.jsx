@@ -8,7 +8,8 @@ import CuentaRegresiva from './CuentaRegresiva'
 
 
 
-function Task ({maximum_date}) {
+function Task ({startTimer, timerDays, timerHours, timerMinutes, timerSeconds}) {
+
 
     const dispatch = useDispatch()
     const data = useSelector((state) => state.tasks)
@@ -99,7 +100,11 @@ return (
                                             <Link to={`/edit/${elem._id}`} ><td className="bg-transparent text center ml-2 hover:bg-green-500 text-green-700 font-semibold hover:text-white py-1 px-2 border border-green-500 hover:border-transparent rounded">Editar</td></Link>
                                         </div>
                                 <CalificarTarea/>
-                                <CuentaRegresiva/>
+                                <div className='mt-4 '>
+                                <CuentaRegresiva
+                                    new Date = {new Date(elem.maximum_date)}
+                                />                              
+                                </div> 
                                     </div>
                                 </div>
                                 </div>
@@ -117,6 +122,12 @@ return (
 }
 
 export default Task
+
+
+// timerDays={elem.maximun_date} 
+// timerHours={elem.maximun_date}
+// timerMinutes={elem.maximun_date}
+// timerSeconds={elem.maximun_date}
 
 
 
