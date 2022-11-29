@@ -8,7 +8,7 @@ import CuentaRegresiva from './CuentaRegresiva'
 
 
 
-function Task ({startTimer, timerDays, timerHours, timerMinutes, timerSeconds}) {
+function Task ({props, startTimer, timerDays, timerHours, timerMinutes, timerSeconds}) {
 
 
     const dispatch = useDispatch()
@@ -99,7 +99,9 @@ return (
                                             <button className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded" onClick={() => handledelete(elem)}>Eliminar</button>
                                             <Link to={`/edit/${elem._id}`} ><td className="bg-transparent text center ml-2 hover:bg-green-500 text-green-700 font-semibold hover:text-white py-1 px-2 border border-green-500 hover:border-transparent rounded">Editar</td></Link>
                                         </div>
-                                <CalificarTarea/>
+                                <CalificarTarea
+                                    ranking={props}
+                                />
                                 <div className='mt-4 '>
                                 <CuentaRegresiva
                                     new Date = {new Date(elem.maximum_date)}
