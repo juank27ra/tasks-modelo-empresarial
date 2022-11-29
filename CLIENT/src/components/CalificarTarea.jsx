@@ -8,13 +8,13 @@ export default function CalificarTarea(props) {
     const [estrellas, setEstrellas]= useState(props.style)
     
     useEffect(()=>{
-        if(props.card === false){
+        
             if(ranking <= 2){
                 setEstrellas({color: "red"})
               }else{
                 setEstrellas({color: "green"})
               }
-        }     
+             
     }, [ranking])
 
     const indexStart= (index)=>{
