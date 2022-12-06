@@ -60,7 +60,6 @@ export const EditTask = (id, data) => {
 }
 
 export const getid = (id) => {
-    console.log(id, "en action getid")
     return async (dispatch) => {
         try {
            const {data} = await axios.get(`http://localhost:3001/task/${id}`)
@@ -69,6 +68,16 @@ export const getid = (id) => {
                 type: GET_ID,
                 payload: data
             })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+// inclompleta<--------------------------------------------->
+export const getinfoName = (name) => {
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.get(`${name}`)
         } catch (error) {
             console.log(error)
         }

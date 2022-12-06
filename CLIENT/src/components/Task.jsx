@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import {useDispatch, useSelector, } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getTask, deleteTask } from '../redux/actions' 
 import Footer from './Footer'
 import CalificarTarea from './CalificarTarea'
 import CuentaRegresiva from './CuentaRegresiva'
+import SearchTask from './SearchTask'
 
 
 
-function Task ({props, startTimer, timerDays, timerHours, timerMinutes, timerSeconds}) {
+
+function Task ({props, }) {
 
 
     const dispatch = useDispatch()
     const data = useSelector((state) => state.tasks)
-    const menu = document.querySelector('#menu')
 
     useEffect(() => {
         dispatch(getTask())
@@ -26,16 +27,16 @@ function Task ({props, startTimer, timerDays, timerHours, timerMinutes, timerSec
 
     const handleClick = (e) => {
         e.preventDefault();
-        menu.classNameList.toggle('hidden')
     }
+
 
 return (
     <div>
         <div className="container mx-auto mt-5">
-            <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-6">
+            <nav className="flex items-center justify-between flex-wrap bg-yellow-800 p-6">
                 <div className="flex items-center flex-shrink-0 text-white mr-6">
                         {/* <svg className="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg> */}
-                        <span className="font-semibold text-xl tracking-tight">Tasks</span>
+                        <span className="mr-4 font-bold text-blue-900 text-6xl tracking-tight">Tasks</span>
                     </div>
                     <div className="block lg:hidden">
                         <button id='boton' className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
@@ -59,6 +60,7 @@ return (
                         </a>
                     </div>
                     <div>
+                       <div className=' my-2 '><SearchTask/></div> 
                         <a href="Create" className="inline-block text-sm px-4 py-2 leading-none 
                         border rounded text-white border-white 
                         hover:border-transparent hover:text-teal-500
@@ -70,7 +72,7 @@ return (
                 </div>
             </nav>
 
-                <div className=" flex flex-wrap  p-4   ">
+                <div className=" flex flex-wrap  p-4  ">
                     {
                         data.map((elem, i) => {
                             return(
@@ -78,7 +80,7 @@ return (
                                 <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg ">
                                     <img class=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg" alt="" />
                                     <div class="p-6 flex flex-col justify-start">
-                                    <h5 class="text-gray-900 text-xl uppercase font-medium mb-2">{elem.title}</h5>
+                                    <h5 class="text-gray-900 text-xl uppercase mb-2 font-bold">{elem.title}</h5>
                                     <p class="text-gray-700 text-base ">
                                         
                                         {elem.description}
@@ -102,10 +104,11 @@ return (
                                 <CalificarTarea
                                     ranking={props}
                                 />
-                                <div className='mt-4 '>
-                                <CuentaRegresiva
-                                    new Date = {new Date(elem.maximum_date)}
-                                />                              
+                                <div className='mt-4 text-xl text-center ml-2 font-bold'>
+                                <CuentaRegresiva 
+                                 maximun_date = {elem.maximum_date}  
+                                />
+                                                             
                                 </div> 
                                     </div>
                                 </div>

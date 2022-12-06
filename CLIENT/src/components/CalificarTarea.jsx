@@ -3,7 +3,7 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
 
 export default function CalificarTarea(props) {
-  console.log(props, "data.props")
+  // console.log(props, "data.props")
   const [ranking, setRanking] = useState(props.ranking)
     const [estrellas, setEstrellas]= useState(props.style)
     

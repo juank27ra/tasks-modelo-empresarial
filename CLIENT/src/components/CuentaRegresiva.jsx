@@ -1,24 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef,  } from 'react'
 import { useSelector } from 'react-redux'
 
 
-export default function CuentaRegresiva() {
-    const maximun_date = useSelector((state) => state.tasks)
-        
+export default function CuentaRegresiva({ maximun_date}) {
+ 
     const [timerDays, setTimerDays] = useState('00')
     const [timerHours, setTimerHours] = useState('00')
     const [timerMinutes, setTimerMinutes] = useState('00')
     const [timerSeconds, setTimerSeconds] = useState('00')
 
-    let interval = useRef()
 
+    let interval = useRef(null)
+    
     const startTimer = () => {
-        // const cuentaRegresiva = new Date().getTime()
-        const cuentaRegresiva = new Date('Dec 24, 2022 00:00:00').getTime()
-        // la siguiente funcion debe tener un parametro con la fecha limite
+
+                 let cuentaRegresiva = new Date(maximun_date).getTime()
+
         interval = setInterval(() => {
             const inmediato = new Date().getTime()
-
             const regresiva = cuentaRegresiva - inmediato
             
             const dias = Math.floor(regresiva / (24 * 60 * 60 * 1000))
@@ -38,11 +37,19 @@ export default function CuentaRegresiva() {
     }
 
     useEffect(() => {
+        
         startTimer()
-        // console.log(maximum_date, "date tarea")
+        
         return () => {
             clearInterval(interval.current)
         }
+        // if(timerDays > 3){
+        //     setTimerDays( {color : "blue"})
+        // }else if(timerDays === 2){
+        //     setTimerDays({color : "purple"})
+        // }else{
+        //     setTimerDays({color : "red"})
+        // }
     })
 
   return (

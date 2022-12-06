@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 import { postTask, getTask } from '../redux/actions'  
 import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 export default function CreateTask() {
 const dispatch = useDispatch()
+const navigate = useNavigate()
 const [input, setInput] = useState({
   title: '',
   description: '',
@@ -40,21 +42,21 @@ const handleChange=(e) =>{
   return (
     <div >
     <h1  className=" container mx-auto mt-5 text-center text-white bg-blue-500 border-blue p-5"  >Crear tu Tarea</h1>
-    <button type="button" class="inline-block px-6 py-2 border-2 border-purple-600 text-purple-600 font-medium text-xs leading-tight uppercase rounded-full ml-6 mt-6 hover:bg-purple-200 hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Volver</button>
+   <Link to='/' ><button type="button" class="inline-block px-6 py-2 border-2 border-purple-600 text-purple-600 font-medium text-xs leading-tight uppercase rounded-full ml-6 mt-6 hover:bg-purple-200 hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Volver</button></Link> 
       <form id='menu' className="w-full max-w-lg container mx-auto mt-5" onSubmit={(e) => handleSubmit(e)}>
           <div  className="flex flex-wrap -mx-3 mb-6 ">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
               title
               </label>
-              <input value={input.title} name="title" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" onChange={(e) => handleChange(e)} id="grid-task" type="text" placeholder="Task" />
+              <input value={input.title} name="title" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" onChange={(e) => handleChange(e)} id="grid-task" type="text" placeholder="Task" required />
               <p className="text-gray-500 text-xs italic">Please fill out this field.</p>
             </div>
             <div className="w-full md:w-1/2 px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
               responsible
               </label>
-              <input value={input.responsible} name="responsible" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={(e) => handleChange(e)} id="grid-last-name" type="text" placeholder="Name" />
+              <input value={input.responsible} name="responsible" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={(e) => handleChange(e)} id="grid-last-name" type="text" placeholder="Name" required />
             </div>
           </div>
       <div className="flex flex-wrap -mx-3 mb-6">
@@ -70,13 +72,14 @@ const handleChange=(e) =>{
               id="grid-first-name" 
               type="date" 
               placeholder="date"
+              required
               /> 
             </div>
             <div className="w-full md:w-1/2 px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
               maximum_date
               </label>
-              <input value={input.maximum_date} name="maximum_date" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={(e) => handleChange(e)} id="grid-last-name" type="date" placeholder="date" />
+              <input value={input.maximum_date} name="maximum_date" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={(e) => handleChange(e)} id="grid-last-name" type="date" placeholder="date" required />
           </div>
       </div>
   <div className="flex flex-wrap -mx-3 mb-6 ">
@@ -84,7 +87,7 @@ const handleChange=(e) =>{
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
       description
       </label>
-      <textarea value={input.description} name="description" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={(e) => handleChange(e)} size="xl" id="grid-textarea" type="textarea" placeholder='Description short or items' />
+      <textarea value={input.description} name="description" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={(e) => handleChange(e)} size="xl" id="grid-textarea" type="textarea" placeholder='Description short or items' required />
       <p className="text-gray-600 text-xs italic"></p>
     </div>
   </div>
@@ -94,7 +97,7 @@ const handleChange=(e) =>{
       fulfilled
       </label>
       <div className="relative">
-        <select onChange={(e) => handleChange(e)} name="fulfilled" value={input.fulfilled} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-center" id="grid-state" >
+        <select onChange={(e) => handleChange(e)} name="fulfilled" value={input.fulfilled} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-center" id="grid-state" required >
           <option  type= 'checkbox' value={true} className="text-green-700" >True</option>
           <option  type= 'checkbox' value={false} className="text-red-700" >False</option>
         </select>
@@ -111,9 +114,9 @@ const handleChange=(e) =>{
     </div> */}
   </div>
   <div className="flex justify-center mt-5 ">
-    <button type="submit" className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-      Crear
-    </button>
+      <button  onClick={() => navigate(-1)} type="submit" className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        Crear
+      </button> 
   </div>
 </form>
     </div>
