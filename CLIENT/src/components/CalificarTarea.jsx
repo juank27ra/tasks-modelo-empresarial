@@ -3,18 +3,15 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
 
 export default function CalificarTarea(props) {
-  // console.log(props, "data.props")
   const [ranking, setRanking] = useState(props.ranking)
     const [estrellas, setEstrellas]= useState(props.style)
     
     useEffect(()=>{
-        
-            if(ranking <= 2){
-                setEstrellas({color: "red"})
-              }else{
-                setEstrellas({color: "green"})
-              }
-             
+      if(ranking <= 2){
+          setEstrellas({color: "red"})
+        }else{
+          setEstrellas({color: "green"})
+        }     
     }, [ranking])
 
     const indexStart= (index)=>{
@@ -28,7 +25,6 @@ export default function CalificarTarea(props) {
           return index < ranking ? <AiFillStar key={index} style={estrellas} onClick={() => indexStart(index)}/> : <AiOutlineStar key={index} style={estrellas} onClick={() => indexStart(index)}/>
         })
       }
-
     </div>
-  )
-}
+    )
+  }

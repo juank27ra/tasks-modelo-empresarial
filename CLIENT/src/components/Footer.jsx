@@ -37,7 +37,7 @@ export default function Footer() {
             </p>
             <p className="mt-4 text-sm text-gray-800">
                 Tecnologias: back-end MongoDb,Nodejs Expressjs, 
-                Front-end Reactjs, Reduxjs, Tailwincss
+                Front-end Reactjs, Reduxjs, Tailwindcss
             </p>
             </div>
           </div>
@@ -119,7 +119,7 @@ export default function Footer() {
         </div>
         <div className="flex flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row">
           <p className="text-sm text-gray-600">
-            {/* © Copyright 2020 Lorem Inc. All rights reserved. */}
+            © All rights reserved 2023 Juan Ramirez.
           </p>
           <ul className="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">
             <li>

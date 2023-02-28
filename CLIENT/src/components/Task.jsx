@@ -11,6 +11,7 @@ import SearchTask from './SearchTask'
 
 
 function Task ({props, }) {
+    console.log({props})
 
 
     const dispatch = useDispatch()
@@ -37,12 +38,12 @@ return (
                 <div className="flex items-center flex-shrink-0 text-white mr-6">
                         {/* <svg className="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg> */}
                         <span className="mr-4 font-bold text-blue-900 text-6xl tracking-tight">Tasks</span>
-                    </div>
-                    <div className="block lg:hidden">
+                </div>
+                <div className="block lg:hidden">
                         <button id='boton' className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
                             <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
                         </button>
-                    </div>
+                </div>
                 <div id='menu' className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                     <div className="text-sm lg:flex-grow">
                         <a href="#responsive-header" 
@@ -71,58 +72,51 @@ return (
                     </div>
                 </div>
             </nav>
-
                 <div className=" flex flex-wrap  p-4  ">
-                    {
-                        data.map((elem, i) => {
-                            return(
-                                <div class="flex justify-center my-4 mx-6  " >
-                                <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg ">
-                                    <img class=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg" alt="" />
-                                    <div class="p-6 flex flex-col justify-start">
-                                    <h5 class="text-gray-900 text-xl uppercase mb-2 font-bold">{elem.title}</h5>
-                                    <p class="text-gray-700 text-base ">
-                                        
-                                        {elem.description}
-                                        <br/>
-                                        {elem.date_create.slice(0, 10)}
-                                        <br/>
-                                        {elem.maximum_date.slice(0, 10)}
-                                        <br/>
-                                        <p className="">Responsable: {elem.responsible}</p>
-                                        <br/>
-                                        <p className="">{elem.fulfilled}</p>
-                                    </p>
-                                    <div className="flex items-center ">
-                                        <input id="remember" type="checkbox" value="" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required />
-                                        <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Calificar</label>
-                                    </div>
-                                        <div className='mt-3'>
-                                            <button className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded" onClick={() => handledelete(elem)}>Eliminar</button>
-                                            <Link to={`/edit/${elem._id}`} ><td className="bg-transparent text center ml-2 hover:bg-green-500 text-green-700 font-semibold hover:text-white py-1 px-2 border border-green-500 hover:border-transparent rounded">Editar</td></Link>
-                                        </div>
-                                <CalificarTarea
-                                    ranking={props}
-                                />
-                                <div className='mt-4 text-xl text-center ml-2 font-bold'>
-                                <CuentaRegresiva 
-                                 maximun_date = {elem.maximum_date}  
-                                />
-                                                             
-                                </div> 
-                                    </div>
+                { data.map((elem, i) => {
+                    return(
+                        <div class="flex justify-center my-4 mx-6  " >
+                            <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg ">
+                                <img class=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg" alt="" />
+                                <div class="p-6 flex flex-col justify-start">
+                                <h5 class="text-gray-900 text-xl uppercase mb-2 font-bold">{elem.title}</h5>
+                                <div class="text-gray-700 text-base ">
+                                    {elem.description}
+                                    <br/>
+                                    {elem.date_create.slice(0, 10)}
+                                    <br/>
+                                    {elem.maximum_date.slice(0, 10)}
+                                    <br/>
+                                    <p className="">Responsable: {elem.responsible}</p>
+                                    <br/>
+                                    <p className="">{elem.fulfilled}</p>
                                 </div>
+                                <div className="flex items-center ">
+                                    <input id="remember" type="checkbox" value="" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required />
+                                    <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Calificar</label>
                                 </div>
-                            )  
-                        })
+                                    <div className='mt-3'>
+                                        <button className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded" onClick={() => handledelete(elem)}>Eliminar</button>
+                                        <Link to={`/edit/${elem._id}`} ><td className="bg-transparent text center ml-2 hover:bg-green-500 text-green-700 font-semibold hover:text-white py-1 px-2 border border-green-500 hover:border-transparent rounded">Editar</td></Link>
+                                    </div>
+                            <CalificarTarea
+                                ranking={props}
+                            />
+                            <div className='mt-4 text-xl text-center ml-2 font-bold'>
+                            <CuentaRegresiva 
+                             maximun_date = {elem.maximum_date}  
+                            />                            
+                            </div> 
+                            </div>
+                            </div>
+                        </div>
+                        )  
+                    })
                     }
                     </div>
                 </div>
-
             <Footer/>
-
-
-            </div>
+        </div>
     )
 }
 

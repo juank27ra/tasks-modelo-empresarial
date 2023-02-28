@@ -1,7 +1,8 @@
 const express = require('express');
-const { Router } = require('express');
+// const { Router } = require('express');
 const router = express.Router()
 const Task = require('../models/Task')
+// const {requiredUser} = require('../index')
 
 
 router.get('/', async(req, res) => {
@@ -20,8 +21,21 @@ router.get('/', async(req, res) => {
     res.json(tasks)
     } catch (error) {
         console.log(error)
+    }   
+})
+
+
+
+
+
+router.get('/', async(req, res) => {
+    const {title} = req.body
+    try {
+        const find = await Task.findOne()
+        res.status(201).send({message: 'Tarea Encontrada'})
+    } catch (error) {
+        console.log(error)
     }
-    
 })
 
 router.post('/', async(req, res) => {

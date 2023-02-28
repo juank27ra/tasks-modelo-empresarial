@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef,  } from 'react'
-import { useSelector } from 'react-redux'
-
 
 export default function CuentaRegresiva({ maximun_date}) {
  
@@ -9,12 +7,11 @@ export default function CuentaRegresiva({ maximun_date}) {
     const [timerMinutes, setTimerMinutes] = useState('00')
     const [timerSeconds, setTimerSeconds] = useState('00')
 
-
     let interval = useRef(null)
     
     const startTimer = () => {
 
-                 let cuentaRegresiva = new Date(maximun_date).getTime()
+         let cuentaRegresiva = new Date(maximun_date).getTime()
 
         interval = setInterval(() => {
             const inmediato = new Date().getTime()
@@ -53,27 +50,26 @@ export default function CuentaRegresiva({ maximun_date}) {
     })
 
   return (
-    <div className='flex flex-row justify-center bg-orange-300 border-stone-900'>
+    <div className='flex flex-row justify-center  border-stone-900'>
     <section>
         <p>{timerDays}</p>
         <small>Dias</small>
-    </section>{" "}
-        <span> : </span>
+    </section>
+        <span>:</span>
     <section>
         <p>{timerHours}</p>
         <small>Horas</small>
-    </section>{" "}
-    <span> : </span>
+    </section>
+    <span>:</span>
     <section>
         <p>{timerMinutes}</p>
         <small>Minutos</small>
-    </section>{" "}
-    <span> : </span>
+    </section>
+    <span>:</span>
     <section>
         <p>{timerSeconds}</p>
         <small>Segundos</small>
     </section>
-
     </div>
   )
 }

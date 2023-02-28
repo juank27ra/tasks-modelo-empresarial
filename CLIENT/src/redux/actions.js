@@ -44,8 +44,6 @@ export const deleteTask = (id) => {
 }
 
 export const EditTask = (id, data) => {
-    console.log(id, "id en action edit")
-    console.log(data, "data en action edit")
     return async () => {
         try {
             await axios({
@@ -62,9 +60,8 @@ export const EditTask = (id, data) => {
 export const getid = (id) => {
     return async (dispatch) => {
         try {
-           const {data} = await axios.get(`http://localhost:3001/task/${id}`)
-           console.log(data, "action en getid")
-           return dispatch({
+            const {data} = await axios.get(`http://localhost:3001/task/${id}`)
+            return dispatch({
                 type: GET_ID,
                 payload: data
             })

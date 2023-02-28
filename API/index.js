@@ -3,6 +3,7 @@ const app = express()
 const morgan = require('morgan')
 const path = require('path')
 const {mongoose} = require('./database')
+const User = require('./models/User')
 
 //settings
 app.set('port', process.env.PORT || 3001)
@@ -18,6 +19,24 @@ app.use((req, res, next) => {
     next();
 });
 
+ const requiredUser = (req, res, next) => {
+    if(!res.locals.user) {
+        return res.redirect('/login')
+    }
+    next()
+}
+
+app.use(async(req, res, next) =>{
+    const userId = req.session.userId
+    if(userId) {
+        const user = await User.findById(userId)
+        if(user){
+            res.locals.user = user
+        }else{
+            delete req.session.userId
+        }
+    }
+})
 //routes
 app.use('/task', require('./routes/task.routes')),
 
@@ -31,3 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.listen(app.get('port'), () => {
     console.log(`server on port ${app.get('port')}`)
 })
+
+
+
+exports.module = requiredUser 

@@ -1,14 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getinfoName } from '../redux/actions'
-
-
 
 export default function SearchTask() {
   const dispatch = useDispatch()
   const [name, SetName] = useState('')
-
-
 
   const handleSearch = (e) => {
     SetName(e.target.value)
